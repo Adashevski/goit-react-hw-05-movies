@@ -5,7 +5,7 @@ import { Data_URL, IMG_URL } from 'components/utils';
 import { fetchData } from 'components/FetchData/FetchData';
 import { Loader } from 'components/Loader/Loader';
 import css from './MovieDetails.module.css';
-
+import { ButtonBack } from 'components/ButtonBack/ButtonBack';
 export default function MovieDetails() {
   const { id } = useParams();
 
@@ -21,6 +21,7 @@ export default function MovieDetails() {
 
   return (
     <div className="container">
+      <ButtonBack />
       {isLoading ? (
         <div>
           <Loader />
