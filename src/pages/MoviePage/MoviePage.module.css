@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.backLink {
+  display: block;
+  width: 60px;
+  margin: 10px 0;
+  padding: 4px 15px;
+  border-radius: 5px;
+  font-size: 13px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  background-color: rgb(122, 122, 122);
+}
+
+.backLink:hover,
+.backLink:focus {
+  background-color: rgb(95, 145, 199);
+}

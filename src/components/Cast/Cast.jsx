@@ -1,46 +1,42 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { IMG_PLACEHOLDER } from 'services/utils';
+import styles from './Cast.module.css';
+import PropTypes from 'prop-types';
 
-import { fetchData } from 'components/FetchData/FetchData';
-import { Loader } from 'components/Loader/Loader';
-import { IMG_PLACEHOLDER, IMG_URL, Data_URL } from 'components/utils';
-
-export default function Cast() {
-  const { id } = useParams();
-
-  const [cast, setCast] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    fetchData(`${Data_URL}/movie/${id}/credits`, setCast, setIsLoading, 'cast');
-  }, [id]);
-
-  const handleImageError = e => {
-    e.target.src = IMG_PLACEHOLDER;
-  };
-
+export const Cast = ({ cast, movieId }) => {
   return (
-    <div>
-      <ul>
-        {isLoading ? (
-          <div>
-            <Loader />
-          </div>
-        ) : (
-          cast.map(person => (
-            <li key={person.id}>
-              <img
-                width={100}
-                src={`${IMG_URL}${person.profile_path}`}
-                alt={person.name}
-                onError={handleImageError}
-              />
-              <p>{person.name}</p>
-              <p>Character: {person.character}</p>
-            </li>
-          ))
-        )}
-      </ul>
-    </div>
+    <ul className={styles.list}>
+      {cast.map((el, index) => (
+        <li className={styles.box} key={`${movieId}r${index + 1}`}>
+          {el.profile_path ? (
+            <img
+              className={styles.img}
+              src={`https://image.tmdb.org/t/p/w500${el.profile_path}`}
+              alt={`${el.name}`}
+              width={150}
+            />
+          ) : (
+            <img
+              className={styles.img}
+              src={IMG_PLACEHOLDER}
+              alt={`${el.name}`}
+              width={150}
+            />
+          )}
+          <h4 className={styles.name}>{el.name}</h4>
+          <p className={styles.role}>{el.character}</p>
+        </li>
+      ))}
+    </ul>
   );
-}
+};
+
+Cast.propTypes = {
+  cast: PropTypes.arrayOf(
+    PropTypes.shape({
+      profile_path: PropTypes.string,
+      name: PropTypes.string.isRequired,
+      character: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+  movieId: PropTypes.string.isRequired,
+};

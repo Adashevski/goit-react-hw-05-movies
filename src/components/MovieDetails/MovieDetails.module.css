@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.poster {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 300px;
+  height: auto;
+  max-height: 450px;
+}
+
+.info {
+  margin-left: 25px;
+}
+
+.subNav {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 0;
+}
+
+.subNavLink {
+  display: block;
+  padding: 4px 15px;
+  border-radius: 5px;
+  font-size: 13px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  background-color: rgb(122, 122, 122);
+}
+
+@media screen and (min-width: 720px) {
+  .infoBox {
+    flex-direction: row;
+  }
+}

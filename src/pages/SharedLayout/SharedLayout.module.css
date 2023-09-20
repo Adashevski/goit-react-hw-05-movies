@@ -1,0 +1,16 @@
+.navContainer {
+  border-bottom: 1px solid rgb(194, 194, 194);
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 15px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
